@@ -57,7 +57,12 @@ class Context
         // -------------------------------------------------------------------------
     // Add as many Gianas as Arduinos you have !
     // -------------------------------------------------------------------------
-        Context::$gianas[] = new Giana("COM0");                                                 // |
+
+        foreach (glob("/dev/arduino*") as $filename) {
+            array_push(Context::$gianas, new Giana($filename));
+        }
+        print_r(Context::$gianas);
+
         // -------------------------------------------------------------------------
 
     }
