@@ -1,8 +1,8 @@
-<?PHP 
-	include ("./inc/facade.inc.php"); 
-	$name = getName();
-	if ($name == "") header ("location: index.php");
-	$devices = getDevices();
+<?php
+  include ("./inc/facade.inc.php");
+  $name = getName();
+  if ($name == "") header ("location: index.php");
+  $devices = getDevices();
 ?>
 <!DOCTYPE html>
 <!--

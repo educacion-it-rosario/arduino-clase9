@@ -14,72 +14,72 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/gpl.txt
 // =============================================================================
-error_reporting(0);
+error_reporting(1);
 session_start();
+
 // =============================================================================
-include_once ($_SERVER["DOCUMENT_ROOT"] . "/giana/srv/security.config.php");
-include_once ($_SERVER["DOCUMENT_ROOT"] . "/giana/srv/mysql.config.php");
+include_once ( dirname(__FILE__) . "/../security.config.php");
+include_once ( dirname(__FILE__) . "/../mysql.config.php");
+
 // =============================================================================
 $mysqli = new mysqli(
-								MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, MYSQL_PORT
-							);
-if ($mysqli->connect_errno != 0)
-	die ($mysqli->connect_errno . " | " . $mysqli->connect_error);
+    MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, MYSQL_PORT
+);
+
+if ($mysqli->connect_errno != 0) {
+    die ($mysqli->connect_errno . " | " . $mysqli->connect_error);
+}
+
 // =============================================================================
 switch (strtoupper ($_SERVER['REQUEST_METHOD']))
 {
 
-	case "POST":
-	
-		$q = "SELECT userId, name ". 
-				 "FROM users ".
-				 "WHERE email = ? ".
-				 "AND password = SHA2(?, 256) ".
-				 "AND enabled = 'Y' ".
-				 "LIMIT 1";
+case "POST":
+    $q = "SELECT userId, name ".
+        "FROM users ".
+        "WHERE email = ? ".
+        "AND password = SHA2(?, 256) ".
+        "AND enabled = 'Y' ".
+        "LIMIT 1";
 
-		$p = $mysqli->prepare ($q);
-		$p->bind_param ("ss", $_REQUEST ["email"], $_REQUEST ["password"]);		 
-	  $p->execute ();
-		$p->bind_result ($userId, $name);
-		$p->fetch ();
-		
-		$_SESSION["userId"] = $userId;
-		$_SESSION["name"] = $name;	
-		
-		echo ('{'.
-					'"userId" : "'.$userId.'",'.
-					'"name" : "'.$name.'"'.
-					'}');
-	
-	break;
+    $p = $mysqli->prepare ($q);
+    $p->bind_param ("ss", $_REQUEST ["email"], $_REQUEST ["password"]);
+    $p->execute ();
+    $p->bind_result ($userId, $name);
+    $p->fetch ();
 
-  case "GET":
-	
-		if (isset ($_REQUEST ["signOut"]))
-		{
-		
-			session_destroy();
-		
-		} 
-		else 
-		{
-	
-			echo ('{'.
-						'"userId" : "'.$_SESSION["userId"].'",'.
-						'"name" : "'.$_SESSION["name"].'"'.
-						'}');
-	
-		}
-	
-	break;
+    $_SESSION["userId"] = $userId;
+    $_SESSION["name"] = $name;
 
-  case "PUT":
-	break;
+    echo ('{'.
+    '"userId" : "'.$userId.'",'.
+    '"name" : "'.$name.'"'.
+    '}');
 
-  case "DELETE":
-	break;
-	
+break;
+
+case "GET":
+
+    if (isset ($_REQUEST ["signOut"])) {
+        session_destroy();
+
+    }  else  {
+
+        echo ('{'.
+        '"userId" : "'.$_SESSION["userId"].'",'.
+        '"name" : "'.$_SESSION["name"].'"'.
+        '}');
+
+    }
+
+break;
+
+case "PUT":
+break;
+
+case "DELETE":
+break;
+
 }
-// =============================================================================
+// =====================================================================
 ?>

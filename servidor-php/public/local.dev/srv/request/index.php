@@ -21,8 +21,9 @@ header ("content-type: text/xml");
 echo ('<?xml version="1.0"?>');
 echo ('<request>');
 // =============================================================================
-include_once ($_SERVER["DOCUMENT_ROOT"] . "/giana/srv/security.config.php");
-include_once ($_SERVER["DOCUMENT_ROOT"] . "/giana/srv/mysql.config.php");
+include_once ( dirname(__FILE__) . "/../security.config.php");
+include_once ( dirname(__FILE__) . "/../mysql.config.php");
+
 // =============================================================================
 $mysqli = new mysqli(
 								MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, MYSQL_PORT

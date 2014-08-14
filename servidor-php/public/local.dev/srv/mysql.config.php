@@ -16,8 +16,19 @@
 // =============================================================================
 define ("MYSQL_HOST", "localhost");
 define ("MYSQL_PORT", "3306");
-define ("MYSQL_USER", "root");
-define ("MYSQL_PASSWORD", "");
+define ("MYSQL_USER", "giana");
+define ("MYSQL_PASSWORD", "giana1234");
 define ("MYSQL_DB", "giana");
+
+$link = new mysqli(
+    MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, MYSQL_PORT
+);
+
+if (!$link != 0)
+    die('Connect Error (' . mysqli_connect_errno() . ') '
+            . mysqli_connect_error());
+
+//echo 'Connected... ' . mysqli_get_host_info($link) . "\n";
+
 // =============================================================================
 ?>
