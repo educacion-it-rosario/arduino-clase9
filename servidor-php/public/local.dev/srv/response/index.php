@@ -1,4 +1,4 @@
-<?PHP 
+<?PHP
 // =============================================================================
 // GIANA Framework | Home Automation Made Easy. (LAMP || WAMP) + Arduino UNO r3.
 // =============================================================================
@@ -6,7 +6,7 @@
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
-// any later version. 
+// any later version.
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
@@ -37,21 +37,21 @@ switch (strtoupper ($_SERVER['REQUEST_METHOD']))
 
 		if ($_REQUEST ["SALT"] != SALT)
 			die();
-	
-		$q = "UPDATE requests ". 
+
+		$q = "UPDATE requests ".
 				 "SET done = 'Y' ".
 				 "WHERE requestId = '".$_REQUEST ["requestId"]."'";
 
  		$mysqli->query ($q);
 
-		$q = "INSERT INTO responses (requestId, value, dateTime) ". 
-				 "VALUES ('".$_REQUEST ["requestId"]."', '".$_REQUEST ["value"]."', ".				 
+		$q = "INSERT INTO responses (requestId, value, dateTime) ".
+				 "VALUES ('".$_REQUEST ["requestId"]."', '".$_REQUEST ["value"]."', ".
 				 "NOW()); ";
 
 		$mysqli->query ($q);
-	
+
 		echo ("<requestId>".$_REQUEST ["requestId"]."</requestId>");
-	
+
 	break;
 
   case "GET":
@@ -62,7 +62,7 @@ switch (strtoupper ($_SERVER['REQUEST_METHOD']))
 
   case "DELETE":
 	break;
-	
+
 }
 // =============================================================================
 echo ('</response>');
