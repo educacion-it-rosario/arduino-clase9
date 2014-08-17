@@ -61,3 +61,18 @@ Si tu ejecuci&oacute;n termino bien, apunt&aacute; el navegador a la siguiente
 direcci&oacute;n:
 
     http://127.0.0.1:38000
+
+### Controlando el servidor
+
+El servidor puede ser detenido sencillamente, ejecutando: ```vagrant halt```
+desd&eacute; el mismo directorio d&oacute;nde ejecutar ```vagrant up```.
+
+Por el contrario si necesitan reiniciar el servidor pueden ejecutar
+```vagrant reload```, y si lo quieren iniciar luego de reiniciar sus
+computadoras ejecutan ```vagrant up```.
+
+Si realizan cambios en la carpeta etc, los mismos tendran que ser aprovisionados
+a la m&acute;uina virtual, para ello ejecutar ```vagrant provision```.
+
+Por &uacute;ltimo si quieren eliminar la m&acute;uina virtual y todo su
+contenido ejecutan ```vagrant destroy```.
