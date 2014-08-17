@@ -5,7 +5,7 @@
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, or
--- any later version. 
+-- any later version.
 -- This program is distributed in the hope that it will be useful,
 -- but WITHOUT ANY WARRANTY; without even the implied warranty of
 -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
@@ -29,9 +29,9 @@ CREATE TABLE users
 -- =============================================================================
 -- INSERT users
 -- =============================================================================
-INSERT INTO users 
+INSERT INTO users
 	(name, description, email, password, enabled, isAdmin)
-VALUES 
+VALUES
 	('admin', 'admin', 'admin@giana.com', SHA2('admin', 256), 'Y', 'Y');
 -- =============================================================================
 -- TABLE devices
@@ -54,8 +54,8 @@ CREATE TABLE devices
 INSERT INTO devices
 	(name, description, port, pinType, pinNumber, readOnly, fx)
 VALUES
-	('LED dp13', 'Onboard LED - digital p13', 'COM13', 'D', 13, 'N', '$x'),
-	('POT ap0', 'Pot - analogue p0', 'COM13', 'A', 0, 'Y', '$x');
+	('LED dp13', 'Onboard LED - digital p13', '/dev/arduino', 'D', 13, 'N', '$x'),
+	('POT ap0', 'Pot - analogue p0', '/dev/arduino', 'A', 0, 'Y', '$x');
 -- =============================================================================
 -- TABLE requests
 -- =============================================================================
@@ -80,7 +80,7 @@ CREATE TABLE responses
 	requestId INT UNSIGNED NOT NULL,
 	value VARCHAR(4),
 	dateTime DATETIME NOT NULL,
-	PRIMARY KEY (requestId)	
+	PRIMARY KEY (requestId)
 );
 -- =============================================================================
 -- TABLE schedule
