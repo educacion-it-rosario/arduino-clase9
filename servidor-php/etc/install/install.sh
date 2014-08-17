@@ -12,13 +12,22 @@ KERNEL_VERSION="3.13.0-33-generic"
 
 BITNAMI_NAME="bitnami-lampstack-${BITNAMI_VERSION}-linux-installer.run"
 BITNAMI_FILE="${HOME}/etc/install/${BITNAMI_NAME}"
-BITNAMI_URL="http://downloads.bitnami.com/files/stack/lampstack/${BITNAMI_NAME}"
+BITNAMI_URL="https://bitnami.com/redirect/to/38786/${BITNAMI_NAME}"
 
 if [ ! -f /home/vagrant/.locales ]; then
     # Need to fix locale so that Postgres creates databases in UTF-8
     locale-gen en_GB.UTF-8
     dpkg-reconfigure locales
     touch /home/vagrant/.locales
+fi
+
+export LANGUAGE=en_GB.UTF-8
+export LANG=en_GB.UTF-8
+export LC_ALL=en_GB.UTF-8
+
+if [ ! -f /tmp/apt-get.updated ]; then
+    apt-get update -y
+    touch /tmp/apt-get.updated
 fi
 
 if [ ! -d /lib/modules/${KERNEL_VERSION}/ ] ; then
@@ -32,16 +41,7 @@ if ! command -v wget ; then
 fi
 
 if [ ! -f ${BITNAMI_FILE} ]; then
-    wget -o ${BITNAMI_FILE} ${BITNAMI_URL}
-fi
-
-export LANGUAGE=en_GB.UTF-8
-export LANG=en_GB.UTF-8
-export LC_ALL=en_GB.UTF-8
-
-if [ ! -f /tmp/apt-get.updated ]; then
-    apt-get update -y
-    touch /tmp/apt-get.updated
+    wget -O ${BITNAMI_FILE} ${BITNAMI_URL}
 fi
 
 if ! command minicom ; then
