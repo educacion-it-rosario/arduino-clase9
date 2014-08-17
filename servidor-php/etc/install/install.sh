@@ -107,6 +107,10 @@ fi
 cp ${HOME}/etc/install/phpmyadmin-conf-httpd-app.conf \
     /opt/bitnami/apps/phpmyadmin/conf/httpd-app.conf
 
+ln -s ${HOME}/app /opt/bitnami/apps/giana
+echo 'Include "/opt/bitnami/apps/giana/conf/httpd-prefix.conf"' >> \
+    /opt/bitnami/apache2/conf/bitnami/bitnami-apps-prefix.conf
+
 service bitnami restart
 
 # configure permissions and udev
