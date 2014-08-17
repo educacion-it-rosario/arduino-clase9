@@ -44,6 +44,10 @@ if [ ! -f /tmp/apt-get.updated ]; then
     touch /tmp/apt-get.updated
 fi
 
+if ! command minicom ; then
+    apt-get install minicom
+fi
+
 if [ ! -f /tmp/${BITNAMI_NAME} ]; then
     cp ${BITNAMI_FILE} /tmp/
     chmod +x /tmp/${BITNAMI_NAME}
@@ -72,6 +76,15 @@ if ! command -v mcedit ; then
     apt-get install -y mc
 fi
 
+
+if [ ! -f /etc/init.d/bitnami ] ; then
+    cp ${HOME}/etc/install/bitnami.init /etc/init.d/bitnami
+    chmod +x /etc/init.d/bitnami
+    update-rc.d bitnami defaults
+    service bitnami start
+fi
+
+
 MYSQL="/opt/bitnami/mysql/bin/mysql"
 
 DATABASES=`echo "SHOW DATABASES;" | ${MYSQL} -u root -p${MYSQL_PASS} `
@@ -94,9 +107,10 @@ fi
 cp ${HOME}/etc/install/phpmyadmin-conf-httpd-app.conf \
     /opt/bitnami/apps/phpmyadmin/conf/httpd-app.conf
 
-/opt/bitnami/ctlscript.sh restart
-
+service bitnami restart
 
 # configure permissions and udev
-sudo usermod -a -G dialout vagrant
-sudo cp ${HOME}/arduino.rules /etc/udev/rules.d/52-arduino.rules
+usermod -a -G dialout vagrant
+cp ${HOME}/etc/install/52-arduino.rules /etc/udev/rules.d
+udevadm control --reload-rules
+udevadm trigger --attr-match=subsystem=usb
