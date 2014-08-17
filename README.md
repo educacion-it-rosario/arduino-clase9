@@ -34,20 +34,30 @@ deber&aacute; dejarlo correr, y si ten&eacute;s alg&uacute;n incoveniente
 escribir un mensaje al grupo tanto de Facebook como de Google Groups as&iacute;
 te podemos ayudar.
 
-Primero ten&eacute;s que bajar el siguiente paquete [1], luego ten&eacute;s que
-descomprimirlo en una carpeta cuya ruta no tenga espacios, o sea no en "Mis
-Documentos", vamos a tomar como referencia c:\arduino-clase9, luego ten&eacute;s
-que abrir una consola (abrir el menu de aplicaciones, escribir cmd y apretar
-ENTER), en dicha consola deber&aacute;s ejecutar (estas instrucciones son para
-Windows, pero tambi&eacute;n aplican a linux o mac):
+Primero ten&eacute;s que bajar el siguiente [paquete](./archive/master.zip),
+luego ten&eacute;s que descomprimirlo en una carpeta cuya ruta no tenga
+espacios, o sea no en "Mis Documentos", vamos a tomar como referencia
+```c:\arduino-clase9```, luego ten&eacute;s que abrir una consola (abrir el
+men&uacute; de aplicaciones, escribir cmd y apretar ENTER), en dicha consola
+deber&aacute;s ejecutar (estas instrucciones son para Windows, pero
+tambi&eacute;n aplican a linux o mac):
 
     $ cd c:\arduino-clase9
     $ vagrant up
 
 Esperar y prepararse unos mates, caf&eacute;, etc.
 
-Una vez que termine apuntar el navegador a la siguiente direcci&oacute;n:
+S&iacute; todo sale bien, deber&iacute;s ver algo as&iacute;:
+
+    ==> default: /opt/bitnami/mysql/scripts/ctl.sh : mysql  started at port 3306
+    ==> default: Syntax OK
+    ==> default: /opt/bitnami/apache2/scripts/ctl.sh: httpd started at port 8000
+    ==> default: + usermod -a -G dialout vagrant
+    ==> default: + cp /vagrant/etc/install/52-arduino.rules /etc/udev/rules.d
+    ==> default: + udevadm control --reload-rules
+    ==> default: + udevadm trigger --attr-match=subsystem=usb
+
+Si tu ejecuci&oacute;n termino bien, apunt&aacute; el navegador a la siguiente
+direcci&oacute;n:
 
     http://127.0.0.1:38000
-
-[1] https://github.com/educacion-it-rosario/arduino-clase9/archive/master.zip
