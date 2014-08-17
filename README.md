@@ -34,7 +34,7 @@ deber&aacute; dejarlo correr, y si ten&eacute;s alg&uacute;n incoveniente
 escribir un mensaje al grupo tanto de Facebook como de Google Groups as&iacute;
 te podemos ayudar.
 
-Primero ten&eacute;s que bajar el siguiente [paquete](./archive/master.zip),
+Primero ten&eacute;s que bajar el siguiente [paquete](../../archive/master.zip),
 luego ten&eacute;s que descomprimirlo en una carpeta cuya ruta no tenga
 espacios, o sea no en "Mis Documentos", vamos a tomar como referencia
 ```c:\arduino-clase9```, luego ten&eacute;s que abrir una consola (abrir el
