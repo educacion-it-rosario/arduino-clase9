@@ -44,8 +44,8 @@ if [ ! -f ${BITNAMI_FILE} ]; then
     wget -O ${BITNAMI_FILE} ${BITNAMI_URL}
 fi
 
-if ! command minicom ; then
-    apt-get install minicom
+if ! command -v minicom ; then
+    apt-get install -y minicom
 fi
 
 if [ ! -f /tmp/${BITNAMI_NAME} ]; then
